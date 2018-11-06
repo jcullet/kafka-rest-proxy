@@ -96,6 +96,10 @@
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-swagger-java-starter</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-kafka</artifactId>
+    </dependency>
     <!-- Test -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
