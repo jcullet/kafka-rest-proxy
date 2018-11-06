@@ -21,7 +21,7 @@ public class CamelRouter extends RouteBuilder {
     public void configure() throws Exception {
 
         KafkaComponent kafka = new KafkaComponent();
-        kafka.setBrokers("cis-kafka-cluster-kafka-bootstrap.amq-streams.svc:9092");
+        kafka.setBrokers("uscis-kafka-bootstrap.amq-streams.svc:9092");
         camelContext.addComponent("kafka", kafka);
 
         // @formatter:off
