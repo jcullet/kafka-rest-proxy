@@ -55,7 +55,7 @@ public class CamelRouter extends RouteBuilder {
             .log("${body}")
             .to("kafka:eprocessing");
 
-        from("kafka:eprocessing&groupId=pcs")
+        from("kafka:eprocessing?groupId=pcs")
             .log("${body}");
         // @formatter:on
     }
