@@ -53,7 +53,10 @@ public class CamelRouter extends RouteBuilder {
 
         from("direct:pre-adjudication-kafka-proxy").description("Places the pre-adjudication form message on a kafka topic")
             .log("${body}")
-            .to("kafka:pre-adjudication-topic");
+            .to("kafka:eprocessing");
+
+        from("kafka:eprocessing&groupId=pcs")
+            .log("${body}");
         // @formatter:on
     }
 
