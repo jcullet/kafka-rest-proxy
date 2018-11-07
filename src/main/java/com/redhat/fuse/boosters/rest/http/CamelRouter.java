@@ -51,12 +51,18 @@ public class CamelRouter extends RouteBuilder {
         //    .streamCaching()
         //    .to("bean:greetingsService?method=getGreetings");
 
-        from("direct:pre-adjudication-kafka-proxy").description("Places the pre-adjudication form message on a kafka topic")
+        from("direct:pre-adjudication-kafka-proxy").routeId("kafka_rest_proxy").description("Places the pre-adjudication form message on a kafka topic")
             .log("${body}")
             .to("kafka:eprocessing");
 
-        from("kafka:eprocessing?groupId=pcs")
+        from("kafka:eprocessing?groupId=pcs").routeId("pcs_client")
             .log("${body}");
+
+        from("kafka:eprocessing?groupId=pdf_cms").routeId("pdf_cms_client")
+                .log("PDF/CMS Client received an event from the eprocessing kafka topic: ${body}");
+
+        from("kafka:eprocessing?groupId=other_clients").routeId("other_clients")
+                .log("Generic (Other) client received an event from the kafka topic: ${body}");
         // @formatter:on
     }
 
